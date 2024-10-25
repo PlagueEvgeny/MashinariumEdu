@@ -1,0 +1,31 @@
+/* CLOBAL */
+@import 'box-model.css';
+@import 'grid.css';
+@import "page.css";
+@import "dropdown.css";
+
+/* MENU */
+@import "menu/logo.css";
+@import "menu/menu.css";
+/* MAIN */
+@import "main/header.css";
+@import "main/main.css";
+/* AUTH */
+@import "auth/profile.css";
+@import "auth/login.css";
+@import "auth/register.css";
+/* CHAT */
+@import "chat/rooms.css";
+/* COURSE */
+@import "course/course.css";
+@import "course/course_detail.css";
+@import "course/course_purchased.css";
+@import "course/module.css";
+@import "course/lesson.css";
+@import "course/test.css";
+/* TEACHER */
+@import "course/course_teacher.css";
+@import "course/course_crud.css";
+@import "teacher/test.css";
+
+

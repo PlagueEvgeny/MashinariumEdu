@@ -1,0 +1,12 @@
+.main{
+    flex-basis: 25%;
+    flex-grow: 4;
+    min-height: 100vh;
+    margin-bottom: 20px;
+}
+.main__content{
+    padding: 80px 40px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}

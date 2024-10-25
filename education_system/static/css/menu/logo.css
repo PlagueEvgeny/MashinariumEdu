@@ -1,0 +1,29 @@
+.menu__logo {
+    height: 115px;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: auto;
+    max-height: 70px;
+}
+
+.logo_mini {
+    width: auto;
+    height: 80%;
+    display: none;
+}
+
+@media (width < 1040px) {
+    .logo {
+        display: none;
+    }
+
+    .logo_mini {
+        display: block;
+    }
+}
+

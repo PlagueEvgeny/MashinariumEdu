@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Ubuntu, serif;
+}
+
+.page__body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.alert {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.alert__error {
+    background-color: #f1aeb5;
+    border: 1px solid #E8838DFF;
+}
+
+.alert__success {
+    background-color: #a3cfbb;
+    border: 1px solid #87F3C1FF;
+}
+
+.alert__warning {
+    background-color: #faebbc;
+    border: 1px solid #FADC85FF;
+}

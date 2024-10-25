@@ -1,0 +1,149 @@
+.rooms {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.rooms__item {
+    border: 1px solid #000000;
+    border-radius: 20px;
+    height: 70vh;
+}
+
+.rooms__item__chat {
+    text-align: center;
+    display: block;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    color: #000000;
+    text-decoration: none;
+}
+
+.rooms__item__chat__active {
+    background-color: #6FCF97;
+    border: 1px solid #6FCF97;
+}
+
+.rooms__chat {
+    display: grid;
+    grid-auto-rows: 1fr max-content;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.chat__message {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 600px;
+}
+
+.chat__message__input {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    border-top: 1px solid #000000;
+    height: 80px;
+    align-items: center;
+    padding: 20px;
+    gap: 40px;
+}
+
+.chat__message__input__text {
+    width: 550px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+}
+
+.chat__message__input__submit {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.chat__message__input__submit__image {
+    height: 40px;
+    width: auto;
+}
+
+/*.message__user {*/
+/*    display: grid;*/
+/*    grid-template-columns: max-content max-content;*/
+/*    margin: 20px;*/
+/*    padding: 10px;*/
+/*    column-gap: 10px;*/
+/*    row-gap: 20px;*/
+/*    align-items: center;*/
+/*    border-radius: 20px;*/
+/*}*/
+
+/*.message__block__image__user {*/
+/*    height: auto;*/
+/*    width: 40px;*/
+/*}*/
+
+/*.message__image__user {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*}*/
+
+/*.message__data{*/
+/*    font-size: 12px;*/
+/*    float: right;*/
+/*}*/
+
+.message__user {
+    border: 2px solid #dedede;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.message__user::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.message__user img {
+    float: left;
+    max-width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 100px;
+}
+
+/* Style the right image */
+.message__user img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.message__username {
+    font-weight: bold;
+}
+
+.message__data__right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.message__data__left {
+    float: left;
+    color: #999;
+}
+
+.message__content {
+    word-break: break-all;
+}

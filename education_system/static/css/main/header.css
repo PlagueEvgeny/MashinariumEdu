@@ -1,0 +1,20 @@
+.header__main {
+    height: 115px;
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    box-shadow: 4px 0 10px 0 #7E6C6C;
+
+}
+
+.header__main__title {
+    margin-left: 40px;
+}
+
+.header__main__title {
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    font-size: 28px;
+}

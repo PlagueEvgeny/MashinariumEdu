@@ -1,0 +1,29 @@
+.course__module {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.course__module__item {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-size: calc(1rem + 6 * (100vw - 120px) / 880);
+    text-decoration: none;
+    color: #000;
+}
+
+.course__module__item__img {
+    width: 50px;
+    height: auto;
+}
+
+.module-detail {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}

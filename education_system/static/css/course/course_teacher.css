@@ -1,0 +1,119 @@
+.course__items__div__title{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.course__items__button{
+    text-align: center;
+    padding: 10px;
+}
+.course__items__change{
+    display: block;
+    text-align: center;
+    padding: 7px 15px;
+    background-color: #F2C94C;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.course__detail__teacher{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.course__detail__teacher__link{
+    display: block;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    align-items: center;
+    font-size: calc(1rem + 6 * (100vw - 120px) / 880);
+}
+.course__detail__teacher__link__name{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+}
+.course__detail__teacher__crud{
+    display: flex;
+    gap: 15px;
+    font-size: calc(0.6rem + 6 * (100vw - 120px) / 880);
+}
+.course__detail__teacher__crud__desc{
+    padding: 4px 4px;
+    margin: 8px 0;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+}
+.course__detail__teacher__crud__change{
+    padding: 4px 4px;
+    margin: 8px 0;
+    background-color: #F2C94C;
+    border: 1px solid #d8b344;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+}
+.teacher__module{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+.teacher__module__item{
+    display: grid;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-size: calc(1rem + 6 * (100vw - 120px) / 880);
+    text-decoration: none;
+    color: #000;
+}
+.teacher__module__item__img{
+    width: 50px;
+    height: auto;
+}
+.teacher__module__item__name{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+}
+.teacher__module__item__crud{
+    display: flex;
+    gap: 15px;
+    font-size: calc(0.6rem + 6 * (100vw - 120px) / 880);
+}
+.lesson__teacher{
+    display: grid;
+    gap: 5px;
+}
+.lesson__teacher__items{
+    display: grid; 
+    grid-template-columns: 50px 50px 1fr 1fr 2fr 1fr ;
+    border-bottom: 1px solid #000;
+    padding: 5px 0;
+}
+.lesson__teacher__items__text{
+    word-wrap: break-word;
+    word-break: break-all;
+    hyphens: auto;
+}
+.course__detail__teacher__student{
+    padding: 20px;
+  width: 100%;
+  display: block;
+  border: 1px solid #000;
+  border-radius: 10px;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+.student__teacher__items{
+    display: grid; 
+    grid-template-columns: 50px 50px 1fr 1fr 2fr 1fr ;
+    border-bottom: 1px solid #000;
+    padding: 5px 0;
+}

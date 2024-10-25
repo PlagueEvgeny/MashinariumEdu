@@ -1,0 +1,228 @@
+/* Основной контейнер */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовки */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Вопросы */
+.question-form {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.question-text {
+    margin-bottom: 15px;
+}
+
+/* Варианты ответа */
+.answer-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.correct-checkbox {
+    margin-right: 10px;
+}
+
+.btn-secondary, .btn-primary {
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin-top: 20px;
+}
+
+/* Кнопка удаления вопроса */
+.delete-question {
+    display: inline-block;
+    color: red;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Стили для кнопок при наведении */
+.btn-secondary:hover {
+    background-color: #ccc;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+/* Контейнер для кнопки отправки */
+.submit-container {
+    text-align: right;
+}
+
+
+.mb-3 {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 10px 0;
+}
+
+.test-title {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.test-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.test-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.textarea-custom {
+    height: 150px; /* Увеличиваем высоту для textarea */
+}
+
+.btn-submit {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.text-danger {
+    margin-top: 5px;
+}
+
+.test-form small.form-text {
+    margin-top: 5px;
+    display: block;
+}
+
+.d-grid {
+    margin: 10px 0 10px 0;
+}
+
+.btn {
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+.test-results {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test-results h3 {
+    text-align: center;
+    color: #4a4a4a;
+}
+
+.question-item {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    list-style: none;
+}
+
+.question-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.question-text {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.correct-answer {
+    color: #28a745; /* Зеленый цвет для правильных ответов */
+    font-weight: bold;
+}
+
+.user-answer {
+    color: #dc3545; /* Красный цвет для пользовательских ответов */
+    font-weight: bold;
+}
+
+.no-answer {
+    color: #6c757d; /* Серый цвет для отсутствующих ответов */
+}
+
+.separator {
+    margin: 10px 0;
+    border-top: 1px dashed #dddddd;
+}
