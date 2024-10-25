@@ -1,0 +1,78 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data" class="profile__form__main">
+    <div class="section__profile">
+        {% csrf_token %}
+        <div class="section__profile__avatar">
+            <label style="cursor:pointer;" for="id_avatar">
+                <img src="{{ user.avatar.url }}" alt="avatar" class="profile__avatar">
+                <input type="file" name="avatar" accept="image/*" class="profile__form__avatar" id="id_avatar">
+                <input type="hidden" name="password" disabled="" id="id_password">
+            </label>
+            <button type="submit" class="profile__submit">Сменить аватар</button>
+        </div>
+        <div class="section__profile__info">
+            <div class="block__profile__form">
+                <label for="id" class="profile__form__label">Ваш id</label>
+                <input type="text" disabled value="{{user.id}}" class="profile__form" name="id" id="id">
+            </div>
+            <div class="block__profile__form">
+                <label for="id_first_name" class="profile__form__label">ФИО</label>
+                <input type="text" value="{{user.first_name}}" class="profile__form" name="first_name"
+                       id="id_first_name">
+            </div>
+            <input type="submit" value="Изменить" class="profile__submit">
+        </div>
+    </div>
+
+    <div class="section__message">
+        <div class="block_message">
+            <img src="{% static 'img/message/telegram.png' %}" alt="Телеграм" class="message__image">
+            <div class="message__input">
+                <p> Ваш логин:
+                    <a href="http://t.me/{{user.telegram}}" target="_blank" class="message__input__link">
+                        {{ user.telegram }}
+                    </a>
+                </p>
+                <a class="profile__toggle__telegram" href="#">
+                    {% if user.telegram %}
+                    Изменить
+                    {% else %}
+                    Привязать
+                    {% endif %}
+                </a>
+                <div class="profile__toggle__input__telegram" style="display: none;">
+                    <input type="text" value="{{user.telegram}}" name="telegram" id="id_telegram" class="profile__input__telegram">
+                    <input type="submit" value="Сохранить" class="profile__input__message__submit">
+                </div>
+            </div>
+        </div>
+        <div class="block_message">
+            <img src="{% static 'img/message/email.png' %}" alt="Почта" class="message__image">
+            <div class="message__input">
+                <p> Ваша почта:
+                    <a href="mailto: {{user.email}}" target="_blank" class="message__input__link">
+                        {{ user.email }}
+                    </a>
+                </p>
+                {{form.errors.email.as_text}}
+                <a class="profile__toggle__email" href="#">Изменить</a>
+                <div class="profile__toggle__input__email" style="display: none;">
+                    <input type="email" value="{{user.email}}" name="email" id="id_email" class="profile__input__email">
+                    <input type="submit" value="Сохранить" class="profile__input__message__submit">
+                </div>
+                {% if user.email_verify == 0 %}
+                <span class="span__send__verify__email">Вы не прошли верификацию</span>
+                <button type="submit" name="btn_send_verify_email" class="btn__send__verify__email">Пройти верификацию
+                </button>
+                {% endif %}
+            </div>
+            {% if user.email %}
+            {% endif %}
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="course__purchased">
+    {% for module in modules %}
+        {% if user in module.completed_by.all %}
+            <a class="course__purchased__item" href="{% url 'main:module_detail'  module.course.slug module.id %}">
+                {{ module.name }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+            </a>
+        {% else %}
+            <span class="course__purchased__item disabled">
+                {{ module.name }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+            </span>
+        {% endif %}
+    {% endfor %}
+
+    {% for assignment in final_course_assignments %}
+        {% if user in assignment.course.students.all %}
+            <a class="course__purchased__item" href="{% url 'main:final_course_session' course.slug assignment.id %}">
+                {{ assignment.title }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+            </a>
+        {% else %}
+            <span class="course__purchased__item disabled">
+                {{ assignment.title }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+            </span>
+        {% endif %}
+    {% endfor %}
+
+    {% for test in tests %}
+        {% if user in test.course.students.all %}
+            <a class="course__purchased__item" href="{% url 'main:take_test_course' course.slug test.id %}">
+                {{ test.title }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+            </a>
+        {% else %}
+            <span class="course__purchased__item disabled">
+                {{ test.title }}
+                <img class="course__purchased__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+            </span>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

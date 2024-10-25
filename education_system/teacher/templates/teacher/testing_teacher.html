@@ -1,0 +1,63 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load custom_filters %}
+{% load static %}
+<div class="lesson__teacher">
+    <div class="lesson__teacher__items">
+        <div>
+            <p>№</p>
+        </div>
+        <div>
+            <p>id</p>
+        </div>
+        <div>
+            <p>Псевдоним</p>
+        </div>
+        <div>
+            <p>
+                Количество вопросов
+            </p>
+        </div>
+        <div>
+            <p>
+                Правильные ответы
+            </p>
+        </div>
+        <div>
+            <p>
+                Процент выполнения
+            </p>
+        </div>
+    </div>
+    {% for item in response %}
+    <div class="lesson__teacher__items">
+        <div>
+            <p class="lesson__teacher__items__text"></p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.student.id}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.student.email}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{questions_count}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.score}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">
+                {% with percentage=item.score|percentage:questions_count %}
+                {% if percentage is not None %}
+                {{ percentage|floatformat:2 }}%
+                {% else %}
+                Н/Д
+                {% endif %}
+                {% endwith %}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

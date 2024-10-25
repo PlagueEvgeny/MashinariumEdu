@@ -1,0 +1,68 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Создать</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="">Модуль</a>
+          <a href="">Контрольное занятие</a>
+          <a href="">Тестирование</a>
+        </div>
+      </div> 
+</div>
+<div class="course__detail__teacher">
+    {% for module in modules %}
+    <div class="course__detail__teacher__link">
+        <p class="course__detail__teacher__link__name">
+            {{module.name}}
+            <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+        </p>
+        <div class="course__detail__teacher__crud">
+            <a href="{% url 'teacher:module_teacher' module.course.slug module.id %}" class="course__detail__teacher__crud__desc">
+                Подробнее
+            </a>
+            <a href="{% url 'teacher:module_change' module.course.slug module.id %}" class="course__detail__teacher__crud__change">
+                Изменить
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% for assignment in final_course_assignments %}
+    <div class="course__detail__teacher__link">
+        <p class="course__detail__teacher__link__name">
+            {{assignment.title}}
+            <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+        </p>
+        <div class="course__detail__teacher__crud">
+            <a href="{% url 'teacher:final_course_session_teacher' assignment.course.slug assignment.id %}" class="course__detail__teacher__crud__desc">
+                Подробнее
+            </a>
+            <a href="{% url 'teacher:final_session_course_change' assignment.course.slug assignment.id %}" class="course__detail__teacher__crud__change">
+                Изменить
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% for test in tests %}
+    <div class="course__detail__teacher__link">
+        <p class="course__detail__teacher__link__name">
+            {{test.title}}
+            <img class="course__purchased__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+        </p>
+        <div class="course__detail__teacher__crud">
+            <a href="{% url 'teacher:testing_course_teacher' test.course.slug test.id %}" class="course__detail__teacher__crud__desc">
+                Подробнее
+            </a>
+            <a href="" class="course__detail__teacher__crud__change">
+                Изменить
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    <a href="{% url 'teacher:course_student_teacher' course.slug %}" class="course__detail__teacher__student">Участники курса</a>
+</div>
+{% endblock %}
+

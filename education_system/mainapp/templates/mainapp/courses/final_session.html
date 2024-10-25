@@ -1,0 +1,92 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+{% if final_session.task_condition %}
+<div class="course__homework">
+    <div>
+        <h1 class="lesson__title">
+            Задание
+        </h1>
+    </div>
+    <div>
+        <p class="lesson__work">
+            {{final_session.task_condition|linenumbers|linebreaks}}
+        </p>
+    </div>
+</div>
+{% endif %}
+{% if final_responses.exists %}
+<div class="course__homework">
+    <div>
+        <h1 class="lesson__title">
+            Ваши ответы
+        </h1>
+    </div>
+    {% for item in final_responses %}
+    {% if item.comment or item.files.count %}
+    <div class="course__homework__answer">
+        <div class="answer__block__text">
+            <h4 style="float: right">
+                Комментарий студента
+            </h4>
+            <p class="home__work__answer__text">
+                {% if item.comment %}
+                {{ item.comment }}
+                {% else %}
+                Комментарий отсутствует
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="answer__block__file">
+            {% if item.files.count > 0 %}
+            <p>Ваши файлы:</p>
+            <a href="?download_response_id={{ item.id }}" class="button">Скачать</a>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if item.feedback %}
+    <div class="course__homework__teacher">
+        <div class="answer__block__text">
+            <h4 style="float: right">
+                Комментарий преподавателя
+            </h4>
+            <p class="home__work__answer__text">
+                {{ item.feedback }}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+    {% else %}
+    {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+<div class="course__homework">
+    <div>
+        <h1 class="lesson__title">
+            Ваши ответы
+        </h1>
+    </div>
+    <p>Задания еще не сданы.</p>
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" class="course__homework__form">
+    {% csrf_token %}
+    <div class="form__block__text">
+        <textarea name="comment" maxlength="256" class="home__work__form__text" id="id_answer"
+                  placeholder="Ваш комментарий (необязательно)"></textarea>
+        <div class="home__work__form__div__button">
+            <button type="submit" class="home__work__form__button">Отправить</button>
+        </div>
+    </div>
+    <div class="form__block__file">
+        <label for="id_files" class="home__work__form__label">Выберите файлы</label>
+        <input type="file" name="files" class="home__work__form__file" multiple id="id_files">
+    </div>
+</form>
+
+{% endblock %}

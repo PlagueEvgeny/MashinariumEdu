@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="lesson__change__form">
+        <input type="text" name="name" maxlength="128" class="lesson_form" required="" id="id_name" placeholder="Название">
+    </div>
+    <div class="lesson__change__form">
+        <input type="url" name="webinar" maxlength="200" class="lesson_form" id="id_webinar" placeholder="Ссылка на вебинар">
+    </div>
+    <div class="lesson__change__form lesson__change__form__file">
+        <div class="lesson__change__form__file__item">
+            <label for="id_presentation">Презентация:</label>
+            <input type="file" name="presentation" accept="file/*" class="lesson_form" id="id_presentation">    
+        </div>
+        <div class="lesson__change__form__file__item">
+            <label for="id_annotation">Анотация:</label>
+            <input type="file" name="annotation" accept="file/*" class="lesson_form" id="id_annotation">
+        </div>
+    </div>
+    <div class="course__change__form">
+        <textarea name="home_work" cols="40" rows="10" class="course_form course_form_textarea" required="" id="id_home_work" placeholder="Домашняя работа"></textarea>
+    </div>
+    <div class="lesson__change__form">
+        <label for="id_open" class="custom-checkbox">
+            <input type="checkbox" name="open" class="lesson_form" id="id_open">
+            <span >Открытие занятия</span>
+        </label> 
+    </div>
+    <div class="lesson__change__form">
+        <button type="submit" class="lesson_form">Создать занятие</button>
+    </div>
+</form>
+{% endblock %}

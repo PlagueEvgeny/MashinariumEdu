@@ -1,0 +1,28 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="course__change__form__image" style="cursor: pointer;">
+        <label style="cursor:pointer;" for="id_images">
+            <img src="{% static 'img/course/camera.png' %}" alt="image course" class="course_form_img">
+            <input type="file" name="images" accept="image/*" class="course_form" id="id_images">
+        </label>
+    </div>
+    <div class="course__change__form">
+        <input type="text" name="name" placeholder="Название" maxlength="128" class="course_form" required="" id="id_name">
+    </div>
+    <div class="course__change__form">
+        <input type="text" name="slug" placeholder="Название на английском" maxlength="128" class="course_form" required="" id="id_slug">
+    </div>
+    <div class="course__change__form">
+        <textarea name="desc" cols="40" rows="10" placeholder="Описание" class="course_form course_form_textarea" required="" id="id_desc"></textarea>
+    </div>
+    <div class="course__change__form">
+        {{form.complexity}}
+    </div>
+    <div class="course__change__form">
+        <button type="submit" class="course_form">Создать курс</button>
+    </div>
+</form>
+{% endblock %}

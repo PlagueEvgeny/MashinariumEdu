@@ -1,0 +1,16 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="module__change__form">
+        <input type="text" name="title" value="{{final_session.title}}" maxlength="128" class="module_form" required="" id="id_title">
+    </div>
+    <div class="module__change__form">
+        <input type="text" name="task_condition" value="{{final_session.task_condition}}" maxlength="128" class="module_form" required="" id="id_task_condition">
+    </div>
+    <div class="module__change__form">
+        <button type="submit" class="module_form">Изменить модуль</button>
+    </div>
+</form>
+{% endblock %}

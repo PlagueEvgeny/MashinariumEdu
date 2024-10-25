@@ -1,0 +1,51 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="lesson__teacher">
+    <div class="student__teacher__items">
+        <div>
+            <p>№</p>
+        </div>
+        <div>
+            <p>id</p>
+        </div>
+        <div>
+            <p>ФИО</p>
+        </div>
+        <div>
+            <p>
+                Почта
+            </p>
+        </div>
+        <div>
+            <p>
+                Телеграм
+            </p>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    {% for item in course.students.all %}
+    <div class="student__teacher__items">
+        <div>
+            <p class="lesson__teacher__items__text"></p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.id}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.first_name}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{item.email}}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">
+                {{item.telegram}}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

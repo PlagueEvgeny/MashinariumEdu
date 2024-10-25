@@ -1,0 +1,89 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>{{ title }}</h2>
+    <form method="post" id="test-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.errors }}
+        </div>
+        <div class="form-group">
+            {{ form.title.label_tag }} {{ form.title }}
+        </div>
+        <div class="form-group">
+            {{ form.description.label_tag }} {{ form.description }}
+        </div>
+        <div class="form-group">
+            {{ form.duration.label_tag }} {{ form.duration }}
+        </div>
+        <div class="form-group">
+            {{ form.passing_score.label_tag }} {{ form.passing_score }}
+        </div>
+        <div class="form-group">
+            {{ form.is_active.label_tag }} {{ form.is_active }}
+        </div>
+
+        <h3>Вопросы</h3>
+        <div id="questions-container">
+            {% for question_form, answer_formset in question_answer_pairs %}
+            <div class="question-form" data-question-id="{{ forloop.counter0 }}">
+                {{ question_form.errors }} <!-- Не забудьте отобразить идентификатор формы -->
+                {{ question_form.as_p }} <!-- Не забудьте отобразить идентификатор формы -->
+
+                <div class="answer-container">
+                    {{ answer_formset.management_form }}  <!-- Скрытые поля управления для ответов -->
+                    {% for answer_form in answer_formset %}
+                    {{ answer_form.errors }}
+                    <div class="answer-form">
+                        {{ answer_form.as_p }}  <!-- Отображаем поля ответов -->
+                        <button type="button" class="btn btn-danger remove-answer">Удалить ответ</button>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button type="button" class="btn btn-success add-answer">Добавить ответ</button>
+                <button type="button" class="btn btn-danger remove-question">Удалить вопрос</button>
+                <!-- Кнопка удаления -->
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <button type="button" id="add-question" class="btn btn-primary">Добавить вопрос</button>
+        <button type="submit" class="btn btn-success">Сохранить тест</button>
+    </form>
+</div>
+
+<template id="question-template">
+    <div class="question-form" data-question-id="__prefix__">
+        <p>
+            <label for="id_questions-__prefix__-question_text">Текст вопроса:</label>
+            <textarea name="questions-__prefix__-question_text" cols="40" rows="10" class="form-control"
+                  placeholder="Введите текст вопроса"></textarea>
+        </p>
+        <p>
+            <label for="id_questions-__prefix__-question_type">Тип вопроса:</label>
+            <select name="questions-__prefix__-question_type" class="form-control">
+            <option value="single">Один вариант ответа</option>
+            <option value="multiple">Несколько вариантов ответов</option>
+            <option value="text">Текстовый ответ</option>
+        </select>
+        </p>
+        <div class="answer-container" data-answer-prefix="__prefix__"></div>
+        <button type="button" class="btn btn-success add-answer">Добавить ответ</button>
+        <button type="button" class="btn btn-danger remove-question">Удалить вопрос</button>
+    </div>
+</template>
+
+<template id="answer-template">
+    <div class="answer-form">
+        <input type="text" name="answers-__prefix__-choice_text" class="form-control"
+               placeholder="Введите вариант ответа">
+        <label><input type="checkbox" name="answers-__prefix__-is_correct"> Правильный ответ</label>
+        <button type="button" class="btn btn-danger remove-answer">Удалить ответ</button>
+    </div>
+</template>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'chatapp/rooms.html' %}
+{% block chat %}
+{% load static %}
+<div class="chat__message" id="chat__message">
+    {% for message in message %}
+    <div class="message__user">
+        <img src="{{ message.user.avatar.url }}" alt="" class="message__image__user">
+        <div class="message__block">
+            <p class="message__username">
+                {{ message.user.email }} ({{ message.user.get_role_display|lower }})
+            </p>
+            <p class="message__content">
+                {{ message.content }}
+            </p>
+            <data class="message__data__right">
+                {{ message.date_added }}
+            </data>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<form method="post" class="chat__message__input">
+    {% csrf_token %}
+    <div>
+        <label for="chat__message__input__text" style="display: none"></label>
+        <input type="text" name="content" id="chat__message__input__text" class="chat__message__input__text" autocomplete="off" placeholder="Введите сообщение...">
+    </div>
+    <div>
+        <button type="submit" id="chat__message__input__submit" class="chat__message__input__submit">
+            <img src="{% static 'img/chat/submit.png' %}" alt="Отправить" class="chat__message__input__submit__image">
+        </button>
+    </div>
+</form>
+
+{{ room.slug|json_script:"room_name" }}
+{{ request.user.avatar.url|json_script:"avatar_url" }}
+{{ request.user.email|json_script:"email" }}
+{{ request.user.get_role_display|lower|json_script:"role" }}
+
+{% block script %}
+<script src="{% static 'js/SettingsChat.js' %}"></script>
+{% endblock %}
+{% endblock %}

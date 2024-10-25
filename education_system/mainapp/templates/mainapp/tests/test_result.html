@@ -1,0 +1,39 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="test-results">
+    <ul>
+        {% for item in questions_with_answers %}
+        <li class="question-item">
+            <div class="question-text"> Вопрос №{{ forloop.counter }}: {{ item.question.question_text }}</div>
+
+            <!-- Правильный ответ -->
+            <div>
+                <span class="correct-answer">Правильный ответ:</span>
+                {% if item.correct_answers %}
+                {{ item.correct_answers|join:", " }}
+                {% else %}
+                <span class="no-answer">Нет правильного ответа</span>
+                {% endif %}
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- Ответ пользователя -->
+            <div>
+                <span class="user-answer">Ваш ответ:</span>
+                {% if item.user_answer %}
+                {% if item.user_answer.selected_choices.exists %}
+                {{ item.user_answer.selected_choices.all|join:", " }}
+                {% else %}
+                {{ item.user_answer.text_answer|default:"Нет ответа" }}
+                {% endif %}
+                {% else %}
+                <span class="no-answer">Нет ответа</span>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

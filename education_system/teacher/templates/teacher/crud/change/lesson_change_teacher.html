@@ -1,0 +1,38 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="lesson__change__form">
+        <input type="text" name="title" value="{{session.title}}" maxlength="128" class="lesson_form" required="" id="id_title" placeholder="Название">
+    </div>
+    <div class="course__change__form">
+        <textarea name="description" cols="40" rows="10" class="course_form course_form_textarea" required="" id="id_description" placeholder="Описание">{{session.description}}</textarea>
+    </div>
+    <div class="lesson__change__form">
+        <input type="url" name="webinar_link" value="{{session.webinar_link}}" maxlength="200" class="lesson_form" id="id_webinar_link" placeholder="Ссылка на вебинар">
+    </div>
+    <div class="lesson__change__form lesson__change__form__file">
+        <div class="lesson__change__form__file__item">
+            <label for="id_presentation">Презентация:</label>
+            {% if session.presentation %}
+            <a href="{{session.presentation.url}}" target="_blank">{{session.presentation}}</a>
+            {%endif%}
+            <input type="file" name="presentation" accept="file/*" class="lesson_form" id="id_presentation">    
+        </div>
+        <div class="lesson__change__form__file__item">
+            <label for="id_annotation">Анотация:</label>
+            {% if session.annotation %}
+            <a href="{{session.annotation.url}}" target="_blank">{{session.annotation}}</a>
+            {%endif%}
+            <input type="file" name="annotation" accept="file/*" class="lesson_form" id="id_annotation">
+        </div>
+    </div>
+    <div class="course__change__form">
+        <textarea name="homework_condition" cols="40" rows="10" class="course_form course_form_textarea" required="" id="id_homework_condition" placeholder="Домашняя работа">{{session.homework_condition}}</textarea>
+    </div>
+    <div class="lesson__change__form">
+        <button type="submit" class="lesson_form">Изменить занятие</button>
+    </div>
+</form>
+{% endblock %}

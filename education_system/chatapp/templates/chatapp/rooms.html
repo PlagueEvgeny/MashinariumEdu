@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="rooms">
+    <div class="rooms__item">
+        {% if rooms %}
+        {% for item in rooms %}
+        <a href="{% url 'chat:room' item.slug %}" class="rooms__item__chat rooms__item__chat__active">
+            {{item.name}}
+        </a>
+        {% endfor %}
+        {% else %}
+        <a class="rooms__item__chat rooms__item__chat__active">
+            Чаты отсувствуют
+        </a>
+        {% endif %}
+    </div>
+    <div class="rooms__chat">
+        {% block chat %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

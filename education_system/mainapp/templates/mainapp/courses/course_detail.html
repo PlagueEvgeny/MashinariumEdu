@@ -1,0 +1,33 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="course__detail">
+    <div class="course__detail__section">
+        <img src="{{ course.images.url }}" alt="Изображение курса" class="course__detail__image">
+        <div>
+            <h1>{{ course.name }}</h1>
+            <p>{{ course.desc }}</p>
+            {% if user in course.students.all %}
+                <a href="{% url 'modules:view_module' course.slug %}" class="button">Перейти к модулям</a>
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+	<div class="course__detail__programm">
+		<h1 class="course__detail__programm__title">
+			Программа курса
+		</h1>
+		{% for module in course.module_course.all %}
+		<div class="course__detail__module__section">
+			<h2 class="course__detail__module__name">
+				{{ module.name }}
+				<a type="button" class="course__detail__module__toggle">+</a>
+			</h2>
+			<p class="course__detail__module__desc course__detail__module__desc__hidden">
+				{{ module.desc }}
+			</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

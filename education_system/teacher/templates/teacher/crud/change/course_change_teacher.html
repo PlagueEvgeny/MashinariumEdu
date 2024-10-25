@@ -1,0 +1,32 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="course__change__form__image" style="cursor: pointer;">
+        <label style="cursor:pointer;" for="id_images">
+            {% if courses.images.url %}
+            <img src="{{ courses.images.url }}" alt="image course" class="course_form_img">
+            {% else %}
+            <img src="{% static 'img/course/camera.png' %}" alt="image course" class="course_form_img">
+            {% endif %}
+            <input type="file" name="images" accept="image/*" class="course_form" id="id_images">
+        </label>
+    </div>
+    <div class="course__change__form">
+        <input type="text" name="name" value="{{courses.name}}" maxlength="128" class="course_form" required="" id="id_name">
+    </div>
+    <div class="course__change__form">
+        <input type="text" name="slug" value="{{courses.slug}}" maxlength="128" class="course_form" required="" id="id_slug">
+    </div>
+    <div class="course__change__form">
+        <textarea name="desc" cols="40" rows="10" class="course_form course_form_textarea" required="" id="id_desc">{{courses.desc}}</textarea>
+    </div>
+    <div class="course__change__form">
+        {{form.complexity}}
+    </div>
+    <div class="course__change__form">
+        <button type="submit" class="course_form">Изменить курс</button>
+    </div>
+</form>
+{% endblock %}

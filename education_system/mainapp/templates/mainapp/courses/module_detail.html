@@ -1,0 +1,51 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="module-detail">
+    <h2>Занятия</h2>
+    {% for session in sessions %}
+    {% if session.is_active %}
+    <a class="course__module__item" href="{% url 'main:session'  module.course.slug module.id session.id %}">
+        {{ session.title }}
+        <img class="course__module__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+    </a>
+    {% else %}
+    <span class="course__module__item disabled">
+            {{ session.title }}
+            <img class="course__module__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+        </span>
+    {% endif %}
+    {% endfor %}
+
+    <h2>Финальные задания</h2>
+    {% for final_assignment in final_assignments %}
+    {% if final_assignment.is_active %}
+    <a class="course__module__item"
+       href="{% url 'main:final_module_session' module.course.slug module.id final_assignment.id %}">
+        {{ final_assignment.title }}
+        <img class="course__module__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+    </a>
+    {% else %}
+    <span class="course__module__item disabled">
+            {{ final_assignment.title }}
+            <img class="course__module__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+        </span>
+    {% endif %}
+    {% endfor %}
+
+    <h2>Тестирование</h2>
+    {% for test in tests %}
+    {% if test.is_active %}
+    <a class="course__module__item" href="{% url 'main:take_test_module' module.course.slug module.id test.id %}">
+        {{ test.title }}
+        <img class="course__module__item__img" src="{% static 'img/course/module/open.png' %}" alt="Открыто">
+    </a>
+    {% else %}
+    <span class="course__module__item disabled">
+        {{ test.title }}
+        <img class="course__module__item__img" src="{% static 'img/course/module/close.png' %}" alt="Закрыто">
+    </span>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

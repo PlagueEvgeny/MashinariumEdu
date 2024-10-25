@@ -1,0 +1,37 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <div class="dropdown">
+          <a href="{% url 'teacher:course_create' %}" class="dropbtn">Создать курс</a>
+      </div> 
+</div>
+<div class="course">
+	{% if courses %}
+	<div class="course__users">
+		<h1 class="course__section__title">
+			Мои курсы
+		</h1>
+		<div class="course__list">
+			{% for course in courses %}
+			<div class="course__items">
+                <div class="course__items__div__title">
+                    <img src="{{ course.images.url }}" class="course__items__images" alt="Изображение курса">
+                    <div class="course__items__button">
+                        <a href="{% url 'teacher:course_change' course.slug %}" class="course__items__change">Изменить</a>
+                    </div>
+                </div>
+				<h2 class="course__items__name">{{ course.name }}</h2>
+				<div class="course__items__block__complexity">
+					<p class="course__items__complexity">
+						{{ course.get_complexity_display }}
+					</p>
+				</div>
+				<a href="{% url 'teacher:course_detail' course.slug %}" class="course__items__link">Перейти к курсу</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

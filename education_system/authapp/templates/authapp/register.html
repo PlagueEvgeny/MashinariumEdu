@@ -1,0 +1,37 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="register">
+        <div class="register__block__form">
+            <label for="id_email" class="register__form__label">Адрес электронной почты</label>
+            <input type="email" name="email" id="id_email" required class="register__form">
+            <div class="register__input__error">{{ form.email.errors }}</div>
+        </div>
+        <div class="register__block__form">
+            <label for="id_first_name" class="register__form__label">ФИО</label>
+            <input type="text" name="first_name" id="id_first_name" required class="register__form">
+            <div class="register__input__error">{{ form.first_name.errors }}</div>
+        </div>
+        <div class="register__block__form">
+            <label for="id_password1" class="register__form__label">Пароль</label>
+            <input type="password" name="password1" autocomplete="new-password" id="id_password1" required
+                   class="register__form">
+            <div class="register__input__error">{{ form.password1.errors }}</div>
+            <div>{{ form.password1.help_text }}</div>
+        </div>
+        <div class="register__block__form">
+            <label for="id_password2" class="register__form__label">Подтвердить пароль</label>
+            <input type="password" name="password2" autocomplete="new-password" id="id_password2" required
+                   class="register__form">
+            <div class="register__input__error">{{ form.password2.errors }}</div>
+        </div>
+        <div class="register__block__form">
+            <button type="submit" class="register__form__submit">Зарегистрироваться</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="course">
+    {% if purchased_courses %}
+    <div class="course__users">
+        <h1 class="course__section__title">Мои курсы</h1>
+        <div class="course__list">
+            {% for user_course in purchased_courses %}
+            <div class="course__items">
+                <div class="course__items__images">
+                    <img src="{{ user_course.images.url }}" alt="Изображение курса" class="course__items__images">
+                </div>
+                <h2 class="course__items__name">{{ user_course.name }}</h2>
+                <p class="course__items__complexity">{{ user_course.get_complexity_display }}</p>
+                <a href="{% url 'main:purchased_course_detail' user_course.slug %}" class="course__items__link">Перейти к
+                    курсу</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="course__section">
+    <h1 class="course__section__title">Все курсы</h1>
+    <div class="course__list">
+        {% for course in available_courses %}
+        <div class="course__items">
+            <div class="course__items__images">
+                <img src="{{ course.images.url }}" alt="Изображение курса" class="course__items__images">
+            </div>
+            <h2 class="course__items__name">{{ course.name }}</h2>
+            <p class="course__items__complexity">{{ course.get_complexity_display }}</p>
+            <a href="{% url 'main:course_detail' course.slug %}" class="course__items__link">Подробнее</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

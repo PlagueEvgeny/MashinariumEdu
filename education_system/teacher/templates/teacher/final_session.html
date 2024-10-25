@@ -1,0 +1,58 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="lesson__teacher">
+    <div class="lesson__teacher__items">
+        <div>
+            <p>№</p>
+        </div>
+        <div>
+            <p>id</p>
+        </div>
+        <div>
+            <p>Email</p>
+        </div>
+        <div>
+            <p>
+                Файл
+            </p>
+        </div>
+        <div>
+            <p>
+                Комментарий студента
+            </p>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    {% for item in final_response %}
+    <div class="lesson__teacher__items">
+        <div>
+
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{ item.student.id }}</p>
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{ item.student.email }}</p>
+        </div>
+        <div>
+            {% if item.files.count > 0 %}
+            <a href="?download_response_id={{ item.id }}" target="_blank">Скачать</a>
+            {% endif %}
+        </div>
+        <div>
+            <p class="lesson__teacher__items__text">{{ item.comment }}</p>
+        </div>
+        <div>
+            {% if item.feedback %}
+            <p class="lesson__teacher__items__text">{{ item.feedback }}</p>
+            {% else %}
+            <a href="">Оставить комментарий</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

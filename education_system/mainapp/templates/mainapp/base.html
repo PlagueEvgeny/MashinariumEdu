@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="page" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'img/logo/favicon.png' %}" type="image/svg">
+    <title>{{ title|default:"Машинариум"|capfirst }}</title>
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+</head>
+<body class="page__body">
+{% block menu %}
+<nav class="nav">
+    <div class="menu__logo">
+        <img src="{% static 'img/logo/logo-gor.png' %}" alt="Логотип" class="logo">
+        <img src="{% static 'img/logo/logo.png' %}" alt="Логотип" class="logo_mini">
+    </div>
+    <div class="menu__link">
+        {% if user.is_authenticated %}
+        <a href="{% url 'auth:profile' %}" class="menu__link__item">Мой профиль</a>
+        <a href="{% url 'main:course_list' %}" class="menu__link__item">Курсы</a>
+        <a href="{% url 'chat:rooms' %}" class="menu__link__item">Поддержка</a>
+        {% if user.role == 1 %}
+        <a href="{% url 'teacher:course_teacher' %}" class="menu__link__item">Преподаватель</a>
+        {% elif user.is_staff %}
+        <a href="{% url 'teacher:course_teacher' %}" class="menu__link__item">Преподаватель</a>
+        <a href="{% url 'admin:index' %}" class="menu__link__item">Админ панель</a>
+        {% endif %}
+        <a href="{% url 'auth:logout' %}" class="menu__link__item">Выход</a>
+        {% else %}
+        <a href="{% url 'auth:login' %}" class="menu__link__item">Авторизация</a>
+        <a href="{% url 'auth:register' %}" class="menu__link__item">Регистрация</a>
+        {% endif %}
+    </div>
+    <footer class="menu__footer">
+        <p class="menu__footer__desc">
+            2023 OOO "Современные технологии +"
+        </p>
+    </footer>
+</nav>
+{% endblock %}
+<main role="main" class="main">
+    <header class="header__main">
+        <h1 class="header__main__title">{{ title|capfirst }}</h1>
+    </header>
+    <div class="main__content">
+        {% if messages %}
+        {% for messages in messages %}
+        <div {% if messages.tags %} class="alert alert__{{ messages.tags }}" {% endif %} role="alert">
+            {{ messages }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/HideShowClick.js' %}"></script>
+<script src="{% static 'js/HideShowClickCourse.js' %}"></script>
+<script src="{% static 'js/InputFile.js' %}"></script>
+<script src="{% static 'js/dropdown.js' %}"></script>
+<script src="{% static 'js/Testing.js' %}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="module__change__form">
+        <input type="text" name="name" value="{{module.name}}" maxlength="128" class="module_form" required="" id="id_name">
+    </div>
+    <div class="module__change__form">
+        <input type="text" name="desc" value="{{module.desc}}" maxlength="128" class="module_form" required="" id="id_desc">
+    </div>
+    <div class="module__change__form">
+        <label for="id_open" class="custom-checkbox">
+            {% if module.open == 1%}
+            <input type="checkbox" name="open" class="module_form" id="id_open" checked>
+            {% else %}
+            <input type="checkbox" name="open" class="module_form" id="id_open">
+            {% endif %}
+            <span >Открытие модуля</span>
+        </label> 
+    </div>
+    <div class="module__change__form">
+        <button type="submit" class="module_form">Изменить модуль</button>
+    </div>
+</form>
+{% endblock %}

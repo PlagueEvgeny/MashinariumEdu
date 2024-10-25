@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="section__login">
+        <div class="login">
+            <label for="id_email" class="login__form__label">Email</label>
+            <input type="email" name="email" id="id_email" class="login__form" required>
+        </div>
+        <div class="password">
+            <label for="id_password" class="login__form__label">Пароль</label>
+            <input type="password" name="password" id="id_password" class="login__form" required>
+        </div>
+        <div class="login__submit">
+            <button type="submit" class="login__form__submit">Войти</button>
+        </div>
+        <a href="{% url 'auth:register' %}" class="login__link__register">Зарегистрироваться</a>
+    </div>
+</form>
+
+{% endblock %}
